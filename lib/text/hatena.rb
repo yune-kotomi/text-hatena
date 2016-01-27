@@ -47,8 +47,8 @@ module Text
 
       parser = HTMLFilter.new({ :context => c }.merge(@htmlfilter_option))
       parser.parse(c.html)
-      @html = parser.html
-      
+      @html = parser.html.force_encoding('utf-8')
+
       unless c.footnotes.empty?
         node = FootnoteNode.new({ :context => c, :ilevel => @ilevel })
         node.parse
