@@ -41,7 +41,7 @@ module Text
         def authors
           @authors ||= get_text_array('Author')
         end
-          
+
         def binding
           @binding ||= get_text('Binding')
         end
@@ -121,7 +121,7 @@ module Text
           xml = fetch(url)
           File.open("#{asin}.xml", "w") do |f|
             f.flock(File::LOCK_EX)
-            f.write(xml)
+            f.write(xml.force_encoding('utf-8'))
           end
         end
         doc = Nokogiri::XML(xml)
